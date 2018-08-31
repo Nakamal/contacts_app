@@ -1,11 +1,23 @@
 class Api::NewContactsController < ApplicationController
-  def one_contact_action
+  def index
     @person = Person.first
     render "one_contact.json.jbuilder"
   end
 
-  def many_contacts_action
+  def create
     @people = Person.all
     render "many_contacts.json.jbuilder"
+  end
+
+  def show
+
+  end
+
+  def update
+
+  end
+
+  def destroy
+    
   end
 end
