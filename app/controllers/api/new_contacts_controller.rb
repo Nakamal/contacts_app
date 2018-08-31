@@ -1,11 +1,17 @@
 class Api::NewContactsController < ApplicationController
   def index
-    @person = Person.find(params[:id])
-    render "show.json.jbuilder"
+    @person = Person.all
+    render "index.json.jbuilder"
   end
 
   def create
-    @person = Person.find(params[:id])
+    @person = Person.new(
+                          first_name: params[:first_name],
+                          last_name: params[:last_name],
+                          email: params[:email],
+                          phone_numnber: params[:phone_numnber]
+                          )
+    @person.save
     render "show.json.jbuilder"
   end
 
@@ -28,6 +34,7 @@ class Api::NewContactsController < ApplicationController
 
   def destroy
     @person = Person.find(params[:id])
-    render "show.json.jbuilder"
+    @person.destroy
+    render json: {message: "Successfully Eliminated!"}
   end
 end
