@@ -1,4 +1,4 @@
-class Person < ApplicationRecord
+class Contact < ApplicationRecord
   def friendly_updated_at
     created_at.strftime("%b %d, %Y")
   end
