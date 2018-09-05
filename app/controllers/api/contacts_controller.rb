@@ -13,8 +13,11 @@ class Api::ContactsController < ApplicationController
                           phone_numnber: params[:phone_numnber],
                           bio: params[:bio]
                           )
-    @contact.save
-    render "show.json.jbuilder"
+    if @contact.save
+      render "show.json.jbuilder"
+    else
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -32,8 +35,11 @@ class Api::ContactsController < ApplicationController
     @contact.phone_numnber = params[:phone_numnber] || @contact.phone_numnber
     @contact.bio = params[:bio] || @contact.bio
 
-    @contact.save
-    render "show.json.jbuilder"
+    if @contact.save
+      render "show.json.jbuilder"
+    else
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
