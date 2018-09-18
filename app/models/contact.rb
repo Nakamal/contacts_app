@@ -5,6 +5,8 @@ class Contact < ApplicationRecord
   validates :email, format: { with: /\A[^@\s]+@(?:[a-z0-9]+\.)+[a-z]{2,9}\z/ }
 
   belongs_to :user
+  has_many :contact_groups
+  has_many :groups, through: :contact_groups
 
   def friendly_updated_at
     created_at.strftime("%b %d, %Y")
